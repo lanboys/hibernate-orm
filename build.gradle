@@ -7,6 +7,9 @@
 
 buildscript {
 	repositories {
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven { url 'https://maven.aliyun.com/repository/google/'}
+		maven { url 'https://maven.aliyun.com/repository/jcenter/'}
 		jcenter()
 		mavenCentral()
 	}
@@ -62,6 +65,9 @@ nexusPublishing {
 
 allprojects {
 	repositories {
+		maven { url 'https://maven.aliyun.com/repository/public/' }
+		maven { url 'https://maven.aliyun.com/repository/google/'}
+		maven { url 'https://maven.aliyun.com/repository/jcenter/'}
 		mavenCentral()
 		//Allow loading additional dependencies from a local path;
 		//useful to load JDBC drivers which can not be distributed in public.

@@ -21,6 +21,8 @@ dependencies {
     compile libraries.assertj
 
     compile libraries.log4j2
+    compile libraries.logback
+    compile libraries.mysql
 
     compile 'javax.money:money-api:1.0.1'
     compile 'org.javamoney:moneta:1.1'

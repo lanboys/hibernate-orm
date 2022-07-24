@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+        <!-- Database connection settings -->
+        <!--<property name="connection.driver_class">com.mysql.jdbc.Driver</property>-->
+        <property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/hibernate?characterEncoding=UTF-8&amp;useUnicode=true&amp;useSSL=false</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.connection.password">admin</property>
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQL57Dialect</property>
+        <!-- sessionFactory.getCurrentSession() 需要配置 -->
+        <!--<property name="current_session_context_class">thread</property>-->
+        <!-- 自带的控制台打印sql-->
+        <property name="show_sql">true</property>
+        <!--<property name="format_sql">true</property>-->
+        <!--<property name="use_sql_comments">true</property>-->
+
+        <!-- create-drop update create validate-->
+        <property name="hbm2ddl.auto">update</property>
+        <!--1 2 4 8 不设置的话，取数据库默认的隔离级别-->
+        <!--<property name="hibernate.connection.isolation">2</property>-->
+
+        <mapping resource="com/bing/lan/pojo/Order.hbm.xml"/>
+
+    </session-factory>
+
+</hibernate-configuration>
