@@ -19,6 +19,7 @@ dependencies {
     compile( libraries.byteman_bmunit )
     compile( libraries.xapool )
     compile( libraries.log4j2 )
+    compile( libraries.logback )
     compile ( libraries.jboss_jta ) {
         transitive=false;
     }

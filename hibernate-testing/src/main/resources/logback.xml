@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration debug="true">
+
+    <property name="LOG_HOME" value="logs"/>
+
+    <!--
+           http://logback.qos.ch/manual/layouts.html
+           %p:输出优先级，即DEBUG,INFO,WARN,ERROR,FATAL
+           %r:输出自应用启动到输出该日志讯息所耗费的毫秒数
+           %t:输出产生该日志事件的线程名
+           %f:输出日志讯息所属的类别的类别名
+           %c:输出日志讯息所属的类的全名
+           %d:输出日志时间点的日期或时间，指定格式的方式： %d{yyyy-MM-dd HH:mm:ss}
+           %l:输出日志事件的发生位置，即输出日志讯息的语句在他所在类别的第几行。
+           %m:输出代码中指定的讯息，如log(message)中的message
+           %n:输出一个换行符号
+       -->
+
+    <property name="NORMAL_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level - %logger{40}.%M:%L - %msg%n"/>
+
+    <Appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <Layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>${NORMAL_PATTERN}</Pattern>
+        </Layout>
+    </Appender>
+
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/quick-start.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <!-- Additivity is set to true by default, that is children inherit the-->
+    <!-- appenders of their ancestors by default. If this variable is set to-->
+    <!-- <code>false</code> then the appenders located in the ancestors of this-->
+    <!-- logger will not be used. However, the children of this logger will inherit-->
+    <!-- its appenders, unless the children have their additivity flag set to-->
+    <!-- <code>false</code> too. See the user manual for more details.-->
+
+    <!--
+         additivity 表示是否继承父 logger 的 appender, 如果继承，则自己的appender和
+         父 logger 的appender 一起打印，否则只打印自己的appender
+    -->
+
+    <logger name="com.bing.lan" additivity="false" >
+        <level value="trace"/>
+        <Appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.hibernate.tool.hbm2ddl.SchemaExport" additivity="false" >
+        <level value="debug"/>
+        <Appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!-- 方法一：利用log打印sql, 跟控制台稍微不一样 -->
+    <!--<logger name="org.hibernate.SQL" additivity="false" >-->
+    <!--    <level value="trace"/>-->
+    <!--    <Appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <!-- 打印 sql 查询参数-->
+    <!--<logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" >-->
+    <!--    <level value="trace"/>-->
+    <!--    <Appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <!-- 打印 sql 结果-->
+    <!--<logger name="org.hibernate.type.descriptor.sql.BasicExtractor" additivity="false">-->
+    <!--    <level value="trace"/>-->
+    <!--    <Appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <logger name="org.hibernate.engine.QueryParameters" additivity="false">
+        <level value="trace"/>
+        <Appender-ref ref="STDOUT"/>
+    </logger>
+
+    <logger name="org.hibernate.engine.query.HQLQueryPlan" additivity="false">
+        <level value="trace"/>
+        <Appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!--<logger name="org.hibernate" additivity="false" >-->
+    <!--    <level value="debug"/>-->
+    <!--    <Appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <!--<logger name="org.hibernate.event.def.DefaultFlushEntityEventListener" additivity="false">-->
+    <!--    <level value="trace"/>-->
+    <!--    <Appender-ref ref="STDOUT"/>-->
+    <!--</logger>-->
+
+    <ROOT level="warn">
+        <Appender-ref ref="STDOUT"/>
+    </ROOT>
+
+</Configuration>
