@@ -1,5 +1,6 @@
 package com.bing.lan.cache;
 
+import com.bing.lan.BaseTest;
 import com.bing.lan.pojo.Order;
 
 import org.hibernate.Session;
@@ -7,22 +8,15 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import org.junit.After;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CacheTest {
+public class CacheTest extends BaseTest {
 
   Logger logger = LoggerFactory.getLogger(CacheTest.class);
 
   SessionFactory sessionFactory;
-
-  @BeforeClass
-  public static void beforeClass() throws Exception {
-    // org.jboss.logging.LoggerProviders
-    System.setProperty("org.jboss.logging.provider", "slf4j");
-  }
 
   @Before
   public void setup() {
